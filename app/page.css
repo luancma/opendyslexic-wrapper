@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'OpenDyslexic';
+    src: url('../public/opendyslexic-0.91.12/compiled/OpenDyslexic-Regular.otf') format("opentype");
+}
+
+
+body {
+    font-family: 'OpenDyslexic', sans-serif;
+    /* Use the font family */
+    background-color: #DBE1F1;
+    color: #000;
+}
+
+.full-converted-text {
+    margin: 0 1em;
+
+
+    & h1 {
+        font-size: 2em;
+        line-height: 1.5em;
+        padding: 1em 0;
+    }
+
+    & h2 {
+        font-size: 1.5em;
+        line-height: 1.5em;
+        padding: 1em 0;
+    }
+
+    & h4 {
+        font-size: 1.5em;
+        line-height: 1.5em;
+        padding: 1em 0;
+        text-align: center;
+    }
+
+    & h5 {
+        font-size: 1.5em;
+        line-height: 1.5em;
+        padding: 1em 0;
+        text-transform: uppercase;
+    }
+
+    & p {
+        font-size: 1.2em;
+        line-height: 2;
+    }
+
+    & p+p {
+        padding: 1em 0;
+    }
+
+
+    & footer {
+        padding: 1em 0;
+    }
+}
+
+@media (min-width: 800px) {
+    .full-converted-text {
+        margin: 0 10em;
+    }
+}
