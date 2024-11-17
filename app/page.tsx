@@ -1,8 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import "./page.css";
 
 export default function Home() {
+  const textRef = React.useRef<HTMLDivElement>(null);
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -35,7 +36,32 @@ export default function Home() {
     }
   }, []);
 
-  if (loading) {
+  const handleMouseUp = () => {
+    const range = window.getSelection()?.getRangeAt(0);
+    if (!range) return;
+    const selectionContents = range.extractContents();
+    const spanElement = document.createElement("span");
+    spanElement.className = "highlight";
+    spanElement.appendChild(selectionContents);
+    range.insertNode(spanElement);
+
+  };
+
+  useLayoutEffect(() => {
+    const current = textRef.current;
+    if (!current) return;
+    if (current) {
+      current.addEventListener("mouseup", handleMouseUp);
+    }
+    return () => {
+      if (current) {
+        current.removeEventListener("mouseup", handleMouseUp);
+      }
+    };
+  });
+
+ 
+  if (loading || !content) {
     <p>Loading...</p>;
   }
 
@@ -43,12 +69,15 @@ export default function Home() {
     <div>
       <h1>Page</h1>
       {content ? (
-        <div
-          className="full-converted-text"
-          dangerouslySetInnerHTML={{
-            __html: content?.replace(/(<? *script)/gi, "illegalscript"),
-          }}
-        ></div>
+        <>
+          <div
+            className="full-converted-text"
+            ref={textRef}
+            dangerouslySetInnerHTML={{
+              __html: content?.replace(/(<? *script)/gi, "illegalscript"),
+            }}
+          ></div>
+        </>
       ) : (
         <div>
           <form action={handleFetch}>

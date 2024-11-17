@@ -9,11 +9,14 @@ body {
     /* Use the font family */
     background-color: #DBE1F1;
     color: #000;
+    font-size: 1.2em;
+    line-height: 2;
+    text-align: justify;
+
 }
 
 .full-converted-text {
     margin: 0 1em;
-
 
     & h1 {
         font-size: 2em;
@@ -41,18 +44,21 @@ body {
         text-transform: uppercase;
     }
 
-    & p {
-        font-size: 1.2em;
-        line-height: 2;
-    }
-
     & p+p {
         padding: 1em 0;
     }
 
-
     & footer {
         padding: 1em 0;
+    }
+
+    blockquote {
+        font-size: 1em;
+        line-height: 1.5em;
+        padding: 1em 0;
+    }
+    .highlight {
+        background-color: #FFD700;
     }
 }
 
