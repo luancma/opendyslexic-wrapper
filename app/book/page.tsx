@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import "../page.css";
-import { text } from "stream/consumers";
 
 export default function Book() {
   const searchParams = useSearchParams();
