@@ -1,9 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import "../page.css";
 
-export default function Book() {
+  function BookContent() {
   const searchParams = useSearchParams();
   const url = searchParams.get("url");
   const [content, setContent] = useState("");
@@ -52,7 +52,7 @@ export default function Book() {
           console.error(error);
         });
     }
-  }, []);
+  }, [url]);
 
   useEffect(() => {
     if (textRef.current) {
@@ -67,10 +67,9 @@ export default function Book() {
         `;
       }
     }
-  }, [textRef.current]);
+  }, []);
 
   return (
-    <div>
       <div
         ref={textRef}
         className="full-converted-text"
@@ -78,6 +77,13 @@ export default function Book() {
           __html: content?.replace(/(<? *script)/gi, "illegalscript"),
         }}
       ></div>
-    </div>
+  );
+}
+
+export default function Book() {
+  return (
+    <Suspense>
+      <BookContent />
+    </Suspense>
   );
 }

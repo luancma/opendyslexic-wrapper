@@ -1,3 +1,6 @@
+:root {
+    --bright: 1;
+}
 @font-face {
     font-family: 'OpenDyslexic';
     src: url('../public/opendyslexic-0.91.12/compiled/OpenDyslexic-Regular.otf') format("opentype");
@@ -16,8 +19,7 @@ body {
 }
 
 .full-converted-text {
-    margin: 0 1em;
-
+    backdrop-filter: brightness(var(--bright));
     & h1 {
         font-size: 2em;
         line-height: 1.5em;
